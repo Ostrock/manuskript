@@ -1656,8 +1656,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.tabMain.setTabIcon(i, icons[i])
 
             item = QListWidgetItem(self.tabMain.tabIcon(i),
-                                   self.tabMain.tabText(i))
-            item.setSizeHint(QSize(item.sizeHint().width(), 64))
+                                   "")  # Start with no text, will be set by set_sidebar_labels_visible
             item.setToolTip(self.tabMain.tabText(i))
             item.setTextAlignment(Qt.AlignCenter)
             self.lstTabs.addItem(item)
@@ -1666,6 +1665,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.lstTabs.item(self.TabDebug).setHidden(not self.SHOW_DEBUG_TAB)
         self.tabMain.setTabEnabled(self.TabDebug, self.SHOW_DEBUG_TAB)
         self.tabMain.currentChanged.connect(self.lstTabs.setCurrentRow)
+
+        # Apply sidebar labels visibility setting
+        self.set_sidebar_labels_visible(settings.show_sidebar_labels)
 
         # Splitters
         self.splitterPersos.setStretchFactor(0, 25)
@@ -2047,3 +2049,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.dialog = exporterDialog(mw=self)
         self.dialog.show()
         self.centerChildWindow(self.dialog)
+
+    ###############################################################################
+    # SIDEBAR
+    ###############################################################################
+    def set_sidebar_labels_visible(self, visible):
+        """Show or hide text labels in the sidebar navigation."""
+        # Icon size is 48x48, add padding for the widget
+        iconOnlyWidth = 64
+        withLabelsWidth = 100
+
+        if visible:
+            # Show icon with text below
+            self.lstTabs.setFixedWidth(withLabelsWidth)
+            for i in range(self.lstTabs.count()):
+                item = self.lstTabs.item(i)
+                item.setText(self.tabMain.tabText(i))
+                item.setSizeHint(QSize(withLabelsWidth, 64))
+        else:
+            # Show icon only - compact width
+            self.lstTabs.setFixedWidth(iconOnlyWidth)
+            for i in range(self.lstTabs.count()):
+                item = self.lstTabs.item(i)
+                item.setText("")
+                item.setSizeHint(QSize(iconOnlyWidth, 56))
