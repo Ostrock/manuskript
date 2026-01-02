@@ -2055,21 +2055,40 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     ###############################################################################
     def set_sidebar_labels_visible(self, visible):
         """Show or hide text labels in the sidebar navigation."""
-        # Icon size is 48x48, add padding for the widget
-        iconOnlyWidth = 64
-        withLabelsWidth = 100
+        # Icon size is 48x48
+        iconOnlyWidth = 48
+        withLabelsWidth = 120
+
+        LOGGER.debug(f"Setting sidebar labels visible: {visible}")
+        LOGGER.debug(f"lstTabs width before change: {self.lstTabs.width()}px")
+        LOGGER.debug(f"dckNavigation width before change: {self.dckNavigation.width()}px")
 
         if visible:
             # Show icon with text below
-            self.lstTabs.setFixedWidth(withLabelsWidth)
+            self.lstTabs.setSpacing(0)
+            self.lstTabs.setMinimumWidth(withLabelsWidth)
+            self.lstTabs.setMaximumWidth(withLabelsWidth)
+            # Make dock widget follow lstTabs size
+            self.dckNavigation.setMinimumWidth(withLabelsWidth)
+            self.dckNavigation.setMaximumWidth(withLabelsWidth)
             for i in range(self.lstTabs.count()):
                 item = self.lstTabs.item(i)
                 item.setText(self.tabMain.tabText(i))
                 item.setSizeHint(QSize(withLabelsWidth, 64))
+            LOGGER.debug(f"lstTabs width after showing labels: {self.lstTabs.width()}px (target: {withLabelsWidth}px)")
+            LOGGER.debug(f"dckNavigation width after showing labels: {self.dckNavigation.width()}px")
         else:
-            # Show icon only - compact width
-            self.lstTabs.setFixedWidth(iconOnlyWidth)
+            # Show icon only - compact width, no text gap
+            self.lstTabs.setSpacing(0)
+            self.lstTabs.setMinimumWidth(iconOnlyWidth)
+            self.lstTabs.setMaximumWidth(iconOnlyWidth)
+            # Make dock widget follow lstTabs size
+            self.dckNavigation.setMinimumWidth(iconOnlyWidth)
+            self.dckNavigation.setMaximumWidth(iconOnlyWidth)
             for i in range(self.lstTabs.count()):
                 item = self.lstTabs.item(i)
                 item.setText("")
-                item.setSizeHint(QSize(iconOnlyWidth, 56))
+                # Set height to exact icon size to eliminate text label gap
+                item.setSizeHint(QSize(iconOnlyWidth, iconOnlyWidth))
+            LOGGER.debug(f"lstTabs width after hiding labels: {self.lstTabs.width()}px (target: {iconOnlyWidth}px)")
+            LOGGER.debug(f"dckNavigation width after hiding labels: {self.dckNavigation.width()}px")
