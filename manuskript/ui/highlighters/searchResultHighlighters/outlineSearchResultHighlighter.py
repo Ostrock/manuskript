@@ -7,7 +7,6 @@ from manuskript.ui.highlighters.searchResultHighlighters.abstractSpecificSearchR
 from manuskript.functions import mainWindow
 from PyQt5.QtWidgets import QTextEdit, QLineEdit, QLabel
 from manuskript.ui.views.metadataView import metadataView
-from manuskript.ui.collapsibleGroupBox2 import collapsibleGroupBox2
 
 
 class outlineSearchResultHighlighter(abstractSearchResultHighlighter):
@@ -23,7 +22,10 @@ class outlineSearchResultHighlighter(abstractSearchResultHighlighter):
         editors = {
             Outline.text: ("txtRedacText", QTextEdit, None),
             Outline.title: ("txtTitle", QLineEdit, "grpProperties"),
+            Outline.summarySituation: ("txtSummarySituation", QLineEdit, "grpSummary"),
             Outline.summarySentence: ("txtSummarySentence", QLineEdit, "grpSummary"),
+            Outline.summaryPara: ("txtSummaryPara", QTextEdit, "grpSummary"),
+            Outline.summaryPage: ("txtSummaryPage", QTextEdit, "grpSummary"),
             Outline.summaryFull: ("txtSummaryFull", QTextEdit, "grpSummary"),
             Outline.notes: ("txtNotes", QTextEdit, "grpNotes"),
 

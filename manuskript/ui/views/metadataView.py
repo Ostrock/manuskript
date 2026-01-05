@@ -12,12 +12,37 @@ class metadataView(QWidget, Ui_metadataView):
         QWidget.__init__(self, parent)
         self.setupUi(self)
         self._lastIndexes = None
+        self.txtSummarySituation.setColumn(Outline.summarySituation)
         self.txtSummarySentence.setColumn(Outline.summarySentence)
+        self.txtSummarySentence_2.setColumn(Outline.summarySentence)
+        self.txtSummaryPara.setColumn(Outline.summaryPara)
+        self.txtSummaryPara_2.setColumn(Outline.summaryPara)
+        self.txtSummaryPage.setColumn(Outline.summaryPage)
+        self.txtSummaryPage_2.setColumn(Outline.summaryPage)
         self.txtSummaryFull.setColumn(Outline.summaryFull)
         self.txtNotes.setColumn(Outline.notes)
         self.revisions.setEnabled(False)
+        
+        # Ensure editable widgets are not read-only
+        self.txtSummaryPara.setReadOnly(False)
+        self.txtSummaryPage.setReadOnly(False)
+        self.txtSummaryFull.setReadOnly(False)
+        
+        # Initialize the snowflake summary dropdown
+        self.cmbMetadataSummary.setCurrentIndex(0)
+        self.cmbMetadataSummary.currentIndexChanged.emit(0)
 
+        self.txtSummarySituation.setStyleSheet(style.lineEditSS())
         self.txtSummarySentence.setStyleSheet(style.lineEditSS())
+        self.txtSummarySentence_2.setStyleSheet(style.lineEditSS())
+        self.txtSummaryPara.setStyleSheet(style.transparentSS() +
+                                          style.simpleScrollBarV())
+        self.txtSummaryPara_2.setStyleSheet(style.transparentSS() +
+                                            style.simpleScrollBarV())
+        self.txtSummaryPage.setStyleSheet(style.transparentSS() +
+                                          style.simpleScrollBarV())
+        self.txtSummaryPage_2.setStyleSheet(style.transparentSS() +
+                                            style.simpleScrollBarV())
         self.txtSummaryFull.setStyleSheet(style.transparentSS() +
                                           style.simpleScrollBarV())
         self.txtNotes.setStyleSheet(style.transparentSS() +
@@ -26,7 +51,13 @@ class metadataView(QWidget, Ui_metadataView):
 
     def setModels(self, mdlOutline, mdlCharacter, mdlLabels, mdlStatus):
         self.properties.setModels(mdlOutline, mdlCharacter, mdlLabels, mdlStatus)
+        self.txtSummarySituation.setModel(mdlOutline)
         self.txtSummarySentence.setModel(mdlOutline)
+        self.txtSummarySentence_2.setModel(mdlOutline)
+        self.txtSummaryPara.setModel(mdlOutline)
+        self.txtSummaryPara_2.setModel(mdlOutline)
+        self.txtSummaryPage.setModel(mdlOutline)
+        self.txtSummaryPage_2.setModel(mdlOutline)
         self.txtSummaryFull.setModel(mdlOutline)
         self.txtNotes.setModel(mdlOutline)
         self.revisions.setModel(mdlOutline)
@@ -62,8 +93,13 @@ class metadataView(QWidget, Ui_metadataView):
         # No item selected
         if len(indexes) == 0:
             self.setEnabled(False)
-            self.revisions.setEnabled(False)
+            self.revisions.situation.setCurrentModelIndex(QModelIndex())
             self.txtSummarySentence.setCurrentModelIndex(QModelIndex())
+            self.txtSummarySentence_2.setCurrentModelIndex(QModelIndex())
+            self.txtSummaryPara.setCurrentModelIndex(QModelIndex())
+            self.txtSummaryPara_2.setCurrentModelIndex(QModelIndex())
+            self.txtSummaryPage.setCurrentModelIndex(QModelIndex())
+            self.txtSummaryPage_2.setCurrentModelIndex(QModelIndex())
             self.txtSummaryFull.setCurrentModelIndex(QModelIndex())
             self.txtNotes.setCurrentModelIndex(QModelIndex())
 
@@ -71,10 +107,22 @@ class metadataView(QWidget, Ui_metadataView):
         elif len(indexes) == 1:
             self.setEnabled(True)
             idx = indexes[0]
+            self.txtSummarySituation.setEnabled(True)
             self.txtSummarySentence.setEnabled(True)
+            self.txtSummarySentence_2.setEnabled(True)
+            self.txtSummaryPara.setEnabled(True)
+            self.txtSummaryPara_2.setEnabled(True)
+            self.txtSummaryPage.setEnabled(True)
+            self.txtSummaryPage_2.setEnabled(True)
             self.txtSummaryFull.setEnabled(True)
             self.txtNotes.setEnabled(True)
+            self.txtSummarySituation.setCurrentModelIndex(idx)
             self.txtSummarySentence.setCurrentModelIndex(idx)
+            self.txtSummarySentence_2.setCurrentModelIndex(idx)
+            self.txtSummaryPara.setCurrentModelIndex(idx)
+            self.txtSummaryPara_2.setCurrentModelIndex(idx)
+            self.txtSummaryPage.setCurrentModelIndex(idx)
+            self.txtSummaryPage_2.setCurrentModelIndex(idx)
             self.txtSummaryFull.setCurrentModelIndex(idx)
             self.txtNotes.setCurrentModelIndex(idx)
             self.revisions.setEnabled(True)
@@ -86,10 +134,22 @@ class metadataView(QWidget, Ui_metadataView):
 
             # Behavior 1:
             # We disable the text areas when multiple indexes are selected
+            self.txtSummarySituation.setEnabled(False)
             self.txtSummarySentence.setEnabled(False)
+            self.txtSummarySentence_2.setEnabled(False)
+            self.txtSummaryPara.setEnabled(False)
+            self.txtSummaryPara_2.setEnabled(False)
+            self.txtSummaryPage.setEnabled(False)
+            self.txtSummaryPage_2.setEnabled(False)
             self.txtSummaryFull.setEnabled(False)
             self.txtNotes.setEnabled(False)
+            self.txtSummarySituation.setCurrentModelIndex(QModelIndex())
             self.txtSummarySentence.setCurrentModelIndex(QModelIndex())
+            self.txtSummarySentence_2.setCurrentModelIndex(QModelIndex())
+            self.txtSummaryPara.setCurrentModelIndex(QModelIndex())
+            self.txtSummaryPara_2.setCurrentModelIndex(QModelIndex())
+            self.txtSummaryPage.setCurrentModelIndex(QModelIndex())
+            self.txtSummaryPage_2.setCurrentModelIndex(QModelIndex())
             self.txtSummaryFull.setCurrentModelIndex(QModelIndex())
             self.txtNotes.setCurrentModelIndex(QModelIndex())
 
@@ -98,6 +158,8 @@ class metadataView(QWidget, Ui_metadataView):
             # Bug: Multiple selections of items sometimes gets Notes/references
             #      field to be erased. See #10 on github.
             #self.txtSummarySentence.setCurrentModelIndexes(indexes)
+            #self.txtSummaryPara.setCurrentModelIndexes(indexes)
+            #self.txtSummaryPage.setCurrentModelIndexes(indexes)
             #self.txtSummaryFull.setCurrentModelIndexes(indexes)
             #self.txtNotes.setCurrentModelIndexes(indexes)
 
