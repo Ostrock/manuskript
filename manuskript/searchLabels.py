@@ -6,8 +6,11 @@ from manuskript.enums import Outline, Character, FlatData, World, Plot, PlotStep
 OutlineSearchLabels = {
     Outline.title: "Title",
     Outline.text: "Text",
+    Outline.summarySituation: "Situation",
     Outline.summarySentence: "One sentence summary",
-    Outline.summaryFull: "Summary",
+    Outline.summaryPara: "One paragraph summary",
+    Outline.summaryPage: "One page summary",
+    Outline.summaryFull: "Full summary",
     Outline.POV: "POV",
     Outline.notes: "Notes",
     Outline.status: "Status",

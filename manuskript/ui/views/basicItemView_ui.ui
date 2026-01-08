@@ -84,24 +84,224 @@
     </layout>
    </item>
    <item>
-    <widget class="lineEditView" name="txtSummarySentence">
-     <property name="text">
-      <string/>
-     </property>
+    <widget class="lineEditView" name="txtSummarySituation">
      <property name="placeholderText">
-      <string>One line summary</string>
+      <string>What if...?</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_9">
-     <property name="text">
-      <string>Few sentences summary:</string>
-     </property>
+    <widget class="QComboBox" name="cmbOutlineSummary">
+     <item>
+      <property name="text">
+       <string>One sentence</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>One paragraph</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>One page</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Full</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item>
-    <widget class="MDEditCompleter" name="txtSummaryFull"/>
+    <widget class="QStackedWidget" name="tabOutlineSummary">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabOutlineSummaryPage1">
+      <layout class="QVBoxLayout" name="verticalLayout_outl_1">
+       <item>
+        <widget class="QLabel" name="label_outl_1">
+         <property name="text">
+          <string>One sentence summary</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="lineEditView" name="txtSummarySentence">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>One line summary</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_outl_1">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabOutlineSummaryPage2">
+      <layout class="QHBoxLayout" name="horizontalLayout_outl_2">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_outl_2a">
+         <item>
+          <widget class="QLabel" name="label_outl_2a">
+           <property name="text">
+            <string>One sentence summary</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="lineEditView" name="txtSummarySentence_2">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="placeholderText">
+            <string>One line summary</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_outl_2a">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_outl_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_outl_2b">
+         <item>
+          <widget class="QLabel" name="label_outl_2b">
+           <property name="text">
+            <string>One paragraph summary</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="MDEditCompleter" name="txtSummaryPara"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabOutlineSummaryPage3">
+      <layout class="QHBoxLayout" name="horizontalLayout_outl_3">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_outl_3a">
+         <item>
+          <widget class="QLabel" name="label_outl_3a">
+           <property name="text">
+            <string>One paragraph summary</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="MDEditCompleter" name="txtSummaryPara_2">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_outl_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_outl_3b">
+         <item>
+          <widget class="QLabel" name="label_outl_3b">
+           <property name="text">
+            <string>Expand each sentence of your one paragraph summary to a paragraph</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="MDEditCompleter" name="txtSummaryPage"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabOutlineSummaryPage4">
+      <layout class="QHBoxLayout" name="horizontalLayout_outl_4">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_outl_4a">
+         <item>
+          <widget class="QLabel" name="label_outl_4a">
+           <property name="text">
+            <string>One page summary</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="MDEditCompleter" name="txtSummaryPage_2">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_outl_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_outl_4b">
+         <item>
+          <widget class="QLabel" name="label_outl_4b">
+           <property name="text">
+            <string>Full summary</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="MDEditCompleter" name="txtSummaryFull"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -123,5 +323,18 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>cmbOutlineSummary</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>tabOutlineSummary</receiver>
+   <slot>setCurrentIndex(int)</slot>
+  </connection>
+  <connection>
+   <sender>tabOutlineSummary</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>cmbOutlineSummary</receiver>
+   <slot>setCurrentIndex(int)</slot>
+  </connection>
+ </connections>
 </ui>

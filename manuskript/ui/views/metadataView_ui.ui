@@ -103,7 +103,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="lineEditView" name="txtSummarySentence">
+       <widget class="lineEditView" name="txtSummarySituation">
         <property name="inputMask">
          <string/>
         </property>
@@ -111,34 +111,248 @@
          <bool>false</bool>
         </property>
         <property name="placeholderText">
-         <string>One line summary</string>
+         <string>What if...?</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line">
-        <property name="frameShadow">
-         <enum>QFrame::Plain</enum>
-        </property>
-        <property name="lineWidth">
-         <number>0</number>
-        </property>
-        <property name="midLineWidth">
-         <number>0</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
+       <widget class="QComboBox" name="cmbMetadataSummary">
+        <item>
+         <property name="text">
+          <string>One sentence</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>One paragraph</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>One page</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Full</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item>
-       <widget class="MDEditCompleter" name="txtSummaryFull">
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
+       <widget class="QStackedWidget" name="tabMetadataSummary">
+        <property name="currentIndex">
+         <number>0</number>
         </property>
-        <property name="placeholderText">
-         <string>Full summary</string>
-        </property>
+        <widget class="QWidget" name="tabMetadataSummaryPage1">
+         <layout class="QVBoxLayout" name="verticalLayout_meta_1">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="lineEditView" name="txtSummarySentence">
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="frame">
+             <bool>false</bool>
+            </property>
+            <property name="placeholderText">
+             <string>One line summary</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabMetadataSummaryPage2">
+         <layout class="QVBoxLayout" name="verticalLayout_meta_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="lineEditView" name="txtSummarySentence_2">
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="frame">
+             <bool>false</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>One line summary</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Line" name="line_meta_2">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>0</number>
+            </property>
+            <property name="midLineWidth">
+             <number>0</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MDEditCompleter" name="txtSummaryPara">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="placeholderText">
+             <string>One paragraph summary</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabMetadataSummaryPage3">
+         <layout class="QVBoxLayout" name="verticalLayout_meta_3">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="MDEditCompleter" name="txtSummaryPara_2">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>One paragraph summary</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Line" name="line_meta_3">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>0</number>
+            </property>
+            <property name="midLineWidth">
+             <number>0</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MDEditCompleter" name="txtSummaryPage">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="placeholderText">
+             <string>One page summary</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabMetadataSummaryPage4">
+         <layout class="QVBoxLayout" name="verticalLayout_meta_4">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="MDEditCompleter" name="txtSummaryPage_2">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>One page summary</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Line" name="line_meta_4">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>0</number>
+            </property>
+            <property name="midLineWidth">
+             <number>0</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MDEditCompleter" name="txtSummaryFull">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="placeholderText">
+             <string>Full summary</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </item>
      </layout>
@@ -257,5 +471,18 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>cmbMetadataSummary</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>tabMetadataSummary</receiver>
+   <slot>setCurrentIndex(int)</slot>
+  </connection>
+  <connection>
+   <sender>tabMetadataSummary</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>cmbMetadataSummary</receiver>
+   <slot>setCurrentIndex(int)</slot>
+  </connection>
+ </connections>
 </ui>

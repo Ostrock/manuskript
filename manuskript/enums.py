@@ -63,6 +63,9 @@ class Outline(IntEnum):
     revisions = 16
     customIcon = 17
     charCount = 18 
+    summarySituation = 19
+    summaryPara = 20
+    summaryPage = 21 
 
 class Abstract(IntEnum):
     title = 0

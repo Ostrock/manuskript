@@ -1642,6 +1642,21 @@
                 </property>
                </widget>
               </item>
+              <item row="5" column="0">
+               <widget class="QCheckBox" name="chkOutlineRevisions">
+                <property name="font">
+                 <font>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Revisions</string>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>

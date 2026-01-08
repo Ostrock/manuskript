@@ -4,10 +4,9 @@ import os
 import shutil
 from collections import OrderedDict
 
-from PyQt5.QtCore import QSize, QSettings, QRegExp, QTranslator, QObject
+from PyQt5.QtCore import QSize, QSettings, QRegExp
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QIntValidator, QIcon, QFont, QColor, QPixmap, QStandardItem, QPainter
-from PyQt5.QtGui import QStyleHints
 from PyQt5.QtWidgets import QStyleFactory, QWidget, QStyle, QColorDialog, QListWidgetItem, QMessageBox
 from PyQt5.QtWidgets import qApp, QFileDialog
 
@@ -23,7 +22,6 @@ from manuskript.ui.editors.themes import loadThemeDatas
 from manuskript.ui.settings_ui import Ui_Settings
 from manuskript.ui.views.outlineView import outlineView
 from manuskript.ui.views.textEditView import textEditView
-from manuskript.ui.welcome import welcome
 from manuskript.ui import style as S
 
 
@@ -118,7 +116,7 @@ class settingsWindow(QWidget, Ui_Settings):
         self.spnGeneralFontSize.setValue(f.pointSize())
         self.spnGeneralFontSize.valueChanged.connect(self.setAppFontSize)
 
-        self.chkProgressChars.setChecked(settings.progressChars);
+        self.chkProgressChars.setChecked(settings.progressChars)
         self.chkProgressChars.stateChanged.connect(self.charSettingsChanged)
 
         self.chkshow_sidebar_labels.setChecked(settings.show_sidebar_labels)
@@ -195,7 +193,7 @@ class settingsWindow(QWidget, Ui_Settings):
             lambda v: self.lblTreeIconSize.setText("{}x{}".format(v, v)))
         self.sldTreeIconSize.setValue(settings.viewSettings["Tree"]["iconSize"])
 
-        self.chkCountSpaces.setChecked(settings.countSpaces);
+        self.chkCountSpaces.setChecked(settings.countSpaces)
         self.chkCountSpaces.stateChanged.connect(self.countSpacesChanged)
 
         self.rdoCorkOldStyle.setChecked(settings.corkStyle == "old")
@@ -448,13 +446,14 @@ class settingsWindow(QWidget, Ui_Settings):
             self.chkOutlineWordCount: Outline.wordCount,
             self.chkOutlineGoal: Outline.goal,
             self.chkOutlinePercentage: Outline.goalPercentage,
+            self.chkOutlineRevisions: Outline.revisions,
         }
 
     def outlineColumnsChanged(self):
         chk = self.sender()
         val = True if chk.checkState() else False
         col = self.outlineColumnsData()[chk]
-        if val and not col in settings.outlineViewColumns:
+        if val and col not in settings.outlineViewColumns:
             settings.outlineViewColumns.append(col)
         elif not val and col in settings.outlineViewColumns:
             settings.outlineViewColumns.remove(col)
@@ -786,7 +785,7 @@ class settingsWindow(QWidget, Ui_Settings):
             lst = [i for i in os.listdir(p) if os.path.splitext(i)[1] == ".theme"]
             for t in lst:
                 theme = os.path.join(p, t)
-                editable = not appPath() in theme
+                editable = appPath() not in theme
                 n = getThemeName(theme)
 
                 item = QListWidgetItem(n)
